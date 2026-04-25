@@ -1,0 +1,193 @@
+﻿/* 親スタイル */
+html {
+  box-sizing: border-box; /* widthとheightにpaddingとborderのサイズが含まれる */
+  margin: 0;     /* 外部余白0 */
+  padding: 0;    /* 余白0 */
+  font-family: 'メイリオ';  /* 標準フォント */
+  font-size: clamp(6px, calc(100vw / 80), 24px); /* 文字サイス：最小2.5px～100%幅で80文字～最大24px  */
+}
+
+/* 全体のスタイル */
+body {
+  font-size: 1rem;      /* 文字サイズ */
+  text-align: left;     /* 左揃え */
+  margin-top: 0rem;     /* 枠外の上余白 */
+  margin-left: 0rem;    /* 枠外の左余白 */
+  margin-right: 0rem;   /* 枠外の右余白 */
+  margin-bottom: 0rem;  /* 枠外の下余白 */
+  padding-top: 0rem;    /* 上余白 */
+  padding-left: 0rem;   /* 左余白 */
+  padding-right: 0rem;  /* 右余白 */
+  padding-bottom: 0rem; /* 下余白 */
+  background-color: rgba(250, 250, 255, 50%); /* 背景色 */
+}
+
+/* 本文のスタイル */
+.content {
+  display: block;
+  width: min(max-content, 100%);  /* 最大画面幅 */
+  margin-top: 0rem;     /* 枠外の上余白 */
+  margin-left: 0rem;    /* 枠外の左余白 */
+  margin-right: auto;   /* 枠外の右余白 ◆右側だけに余白*/
+  margin-bottom: 0rem;  /* 枠外の下余白 */
+  padding-top: 0rem;    /* 上余白 */
+  padding-left: 1rem;   /* 左余白 */
+  padding-right: 1rem;  /* 右余白 */
+  padding-bottom: 0rem; /* 下余白 */
+  overflow-y: hidden;   /* 縦スクロールバー非表示◆ */
+  overflow-x: hidden;   /* 横スクロール非表示◆ */
+  background-color: rgba(250, 250, 255,50%); /* 背景色 */
+}
+
+/* 各章タイトルの文字サイズ */
+.h1 {
+  display: block;  /* block要素にして章は１行表示 */
+  display: inline;
+  font-size: 1.2rem;
+  font-weight: bold; /*  太字  */
+  margin-bottom: 0px;
+  color: #008080;
+  line-height: 1.3;
+}
+/* アンカーの文字サイズ */
+.h2 {
+  display: block;      /* block要素にしてアンカーは１行表示 */
+  font-size: 1.1rem;
+  font-weight: bold; /*  太字  */
+  margin-bottom: 0px;
+  color: #004040;
+  line-height: 1.2;
+}
+/* H3タグの文字サイズ等 */
+.h3 {
+  display: block;      /* block要素にしてアンカーは１行表示 */
+  font-size: 1rem;
+  font-weight: bold;      /*  太字  */
+  margin-bottom: 0px;
+  color: initial;         /* 文字色を初期値に戻す */
+  line-height: 1.5;
+}
+
+/* アイコン画像のセルのスタイル */
+.icon-cell {
+  width: 5rem;                        /* セルの幅を超えないように画像を調整 */
+  height: 5rem;                       /* セルの高さを固定 */
+  text-align: center;                 /* セル内のコンテンツを水平方向に中央揃え */
+  vertical-align: center;             /* セル内のコンテンツを垂直方向に中央揃え */
+  background-color: #fcfcff;        /* わずかにグレーがかった背景色 */
+  border-bottom: 1px solid #e0e0e0; /* 下線のみ区切りとして */
+}
+
+/* アイコン画像のスタイル */
+.icon {
+  width: 4.5rem;        /* セルの幅を超えないように画像を調整 */
+  height: 4.5rem;       /* 例: 高さを50pxに固定 */
+  object-fit: contain;  /* 画像を縮小し、アスペクト比を維持して要素内に収まるようにします */
+  display: block;       /* margin: auto を使うためにブロック要素にする */
+  margin: auto;         /* 左右中央に配置 */
+}
+
+/* アイコン画像（小）のスタイル */
+.icon-S {
+  height: 1.5rem;       /* 例: 高さを50pxに固定 */
+  width: 1.5rem;        /* セルの幅を超えないように画像を調整 */
+  object-fit: contain;  /* 画像を縮小し、アスペクト比を維持して要素内に収まるようにします */
+  margin-right: 0.5rem; /* 画像とテキストの間に少しスペースを空ける */
+}
+
+/* 外部リンクにアイコン付ける */
+a[href^="http://"]:not([href*="web.fc2.com"]):not([href*="counter.fc2.com"]):not(:has(.icon))::after,
+a[href^="https://"]:not([href*="web.fc2.com"]):not([href*="counter.fc2.com"]):not(:has(.icon))::after {
+  content: "";            /* 疑似要素として空のコンテンツを作成 */
+  display: inline-block;  /* インラインブロック要素として表示 */
+  width: 1rem;            /* アイコンの幅 */
+  height: 1rem;           /* アイコンの高さ */
+  margin-left: 4px;       /* テキストとの左側の余白 */
+  background-image: url("picture/window-ic.png");   /* アイコン画像 */
+  background-repeat: no-repeat;                     /* 繰り返しなし */
+  background-position: bottom 0px right 0px;       /* 表示位置 */
+  background-color: rgb(255, 255, 255, 0.8);     /* 背景色：白（半透明80%） */
+  background-size: contain;             /* 背景画像を要素内に収まるように調整 */
+}
+
+/*  文字：赤 */
+.red-B {
+  color: red;       /* 赤色 */
+  font-weight: bold;  /* 太字 */
+}
+/*  文字：青 */
+.blue-B {
+  color: blue;      /* 青色 */
+  font-weight: bold;  /* 太字 */
+}
+
+/*  左寄せ */
+.left-text {
+  text-align: left; /* 左寄せ */
+}
+/*  右寄せ */
+.right-text {
+  text-align: right; /* 右寄せ */
+}
+
+/*  基本的なリンクのスタイル */
+a:link {
+  text-decoration: none;
+  color: #0000CC;
+}
+/*  既読リンクのスタイル */
+a:visited {
+  text-decoration: none;
+  color: #aa0032;
+}
+/*  クリックしたときのリンクのスタイル */
+a:active {
+  text-decoration: none;
+  color: #CC0000;
+}
+/*  マウスのポインタを置いたときのリンクのスタイル */
+a:hover {
+  text-decoration: none;
+  color: #0099FF;
+}
+
+/* ルビを非表示 */
+.XXX {
+  position: absolute;     /* ルビを通常の位置から切り離す */
+  width: 1px;             /* 幅を最小限にする */
+  height: 1px;            /* 高さを最小限にする */
+  margin: -1px;           /* 周囲のスペースもなくす */
+  padding: 0;             /* 余白0 */
+  overflow: hidden;       /* 内容がはみ出しても表示しない */
+  clip: rect(0, 0, 0, 0); /* 要素の表示領域を完全に切り取る */
+  border: 0;              /* 罫線なし */
+}
+
+/* 表の設定 */
+table {
+  width: 100%; /* .contentの幅（本来の幅 or 100%）に従う */
+  border-collapse: collapse; /* 罫線は重ねる */
+}
+/*  リンク集のセルのスタイル  */
+.td1 {
+  font-size: 1.5rem;    /* 大きめのフォントサイズ */
+  font-weight: bold;    /* 太字 */
+  text-align: left;    /* 左揃え */
+  vertical-align: center;             /* 下揃え（link-td2とのバランスを考慮） */
+  padding: 0.5rem 0rem 0.5rem 2rem;   /* 上右下左の順でパディング（下を少なめに） */
+  background-color: #f8f8f8;        /* わずかにグレーがかった背景色 */
+  border-bottom: 1px solid #e0e0e0; /* 下線のみ区切りとして */
+  width: 30rem;                       /* セルの幅 */
+}
+
+.td2 {
+  padding: 0rem 0rem 0rem 1rem; /* 上右下左の余白 */
+  text-align: left;
+  font-size: 1.2rem;
+  background-color: rgba(250, 250, 255,90%); /* わずかにグレーがかった背景色 */
+}
+
+/* FC2カウンターのリンク印を非アクティブにする */
+#fc2-counter {
+  pointer-events: none; /* マウスイベントを透過させる */
+}

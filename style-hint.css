@@ -1,0 +1,174 @@
+﻿* {
+  box-sizing: border-box; /* widthとheightにpaddingとborderのサイズが含まれる */
+  padding: 0;
+}
+/* 親スタイル */
+html {
+  box-sizing: border-box; /* widthとheightにpaddingとborderのサイズが含まれる */
+  width: auto;  /* 幅 */
+  height: 100vh; /* 高さ */
+  margin: 0;     /* 外部余白0 */
+  padding: 0;    /* 余白0 */
+  font-size: clamp(2.5px, calc(100vw / 30), 24px); /* 文字サイス：最小2.5px～100%幅で80文字～最大24px  */
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit; /* 親から継承（＝border-box） */
+}
+/* 全体のスタイル */
+body {
+  width: 100vw ;               /* 幅 */
+  height: auto;                /* 高さ */
+  background-color: #f7fbff; /* 背景色：灰色がかった水色 */
+  font-size: 1rem;             /* 文字サイズはインラインフレーム内で縮小されるので大き目*/
+  margin-top: 0rem;            /* 枠外の上余白 */
+  margin-left: 0rem;           /* 枠外の左余白 */
+  margin-right: 0rem;          /* 枠外の右余白 */
+  margin-bottom: 0rem;         /* 枠外の下余白 */
+  padding-top: 0rem;           /* 上余白 */
+  padding-left: 1rem;          /* 左余白 */
+  padding-right: 2rem;       /* スクロールバーの内側の右余白 */
+  padding-bottom: 0rem;        /* 下余白 */
+  text-wrap: pretty;           /* 自然で読みやすく改行し、かつ最終行に１単語だけ残さない */
+  line-break: strict;          /* 厳格に禁則処理して改行 */
+  overflow-wrap: break-word;   /* 幅内で単語の途中で改行 */
+  overflow-x: hidden;          /* 横スクロールバー非表示 */
+  overflow-y: hidden;            /* 縦スクロールバー非表示 */
+}
+.content {
+  display: block;
+  -webkit-overflow-scrolling: touch; /* 指に吸い付くスクロール */
+  scroll-behavior: smooth;
+}
+
+/* 各章タイトルの文字サイズ */
+.h1 {
+  display: block;  /* block要素にして章は１行表示 */
+  display: inline;
+  font-size: 1.2rem;
+  font-weight: bold; /*  太字  */
+  margin-bottom: 0px;
+  color: #008080;
+  font-family: 'メイリオ';
+  line-height: 1.3;
+}
+/* アンカーの文字サイズ */
+.h2 {
+  display: block;      /* block要素にしてアンカーは１行表示 */
+  font-size: 1.1rem;
+  font-weight: bold; /*  太字  */
+  margin-bottom: 0px;
+  color: #004040;
+  font-family: 'メイリオ';
+  line-height: 1.2;
+}
+/* H3タグの文字サイズ等 */
+.h3 {
+  display: block;      /* block要素にしてアンカーは１行表示 */
+  font-size: 1rem;
+  font-weight: bold;      /*  太字  */
+  margin-bottom: 0px;
+  color: initial;         /* 文字色を初期値に戻す */
+  font-family: 'メイリオ';
+  line-height: 1.5;
+}
+
+/*  リスト記号「・」非表示  */
+ul {
+  list-style: none; /* リスト印：なし */
+}
+/*  リスト記号「・」非表示  */
+li {
+  list-style: none;     /* リスト印：なし */
+  white-space: normal;  /* 文は行末で折り返しする */
+}
+
+/* 外部リンクにアイコン付ける */
+a[href^="http://"]:not([href*="web.fc2.com"]):not([href*="counter.fc2.com"]):not(:has(.icon))::after,
+a[href^="https://"]:not([href*="web.fc2.com"]):not([href*="counter.fc2.com"]):not(:has(.icon))::after {
+  content: "";            /* 疑似要素として空のコンテンツを作成 */
+  display: inline-block;  /* インラインブロック要素として表示 */
+  width: 1rem;            /* アイコンの幅 */
+  height: 1rem;           /* アイコンの高さ */
+  margin-left: 4px;       /* テキストとの左側の余白 */
+  background-image: url("picture/window-ic.png");   /* アイコン画像 */
+  background-repeat: no-repeat;                     /* 繰り返しなし */
+  background-position: bottom 0px right 0px;       /* 表示位置 */
+  background-color: rgb(255, 255, 255, 0.8);     /* 背景色：白（半透明80%） */
+  background-size: contain;             /* 背景画像を要素内に収まるように調整 */
+}
+
+/* FC2カウンターのリンク印を非アクティブにする */
+#fc2-counter {
+  pointer-events: none; /* マウスイベントを透過させる */
+}
+
+/*  文字：赤 */
+.red-B {
+  color: red;       /* 赤色 */
+  font-weight: bold;  /* 太字 */
+}
+/*  文字：青 */
+.blue-B {
+  color: blue;      /* 青色 */
+  font-weight: bold;  /* 太字 */
+}
+
+/*  左寄せ */
+.left-text {
+  text-align: left; /* 左寄せ */
+}
+/*  右寄せ */
+.right-text {
+  text-align: right; /* 右寄せ */
+}
+
+/*  基本的なリンクのスタイル */
+a:link {
+  text-decoration: none;
+  color: #0000CC;
+}
+/*  既読リンクのスタイル */
+a:visited {
+  text-decoration: none;
+  color: #aa0032;
+}
+/*  クリックしたときのリンクのスタイル */
+a:active {
+  text-decoration: none;
+  color: #CC0000;
+}
+/*  マウスのポインタを置いたときのリンクのスタイル */
+a:hover {
+  text-decoration: none;
+  color: #0099FF;
+}
+
+/* ルビを非表示 */
+.XXX {
+  position: absolute;     /* ルビを通常の位置から切り離す */
+  width: 1px;             /* 幅を最小限にする */
+  height: 1px;            /* 高さを最小限にする */
+  margin: -1px;           /* 周囲のスペースもなくす */
+  padding: 0;             /* 余白0 */
+  overflow: hidden;       /* 内容がはみ出しても表示しない */
+  clip: rect(0, 0, 0, 0); /* 要素の表示領域を完全に切り取る */
+  border: 0;              /* 罫線なし */
+}
+
+/*  挿入表のスタイル  */
+.table-wrap {
+  margin-left: 30px;
+  background-color: #ffffff;
+}
+
+/*  挿入表セルのスタイル  */
+.table-wrap td {
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 0px;
+  text-align: center;
+}
+
