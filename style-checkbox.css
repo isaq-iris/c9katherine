@@ -1,0 +1,141 @@
+﻿@charset "UTF-8";
+/* 親スタイル */
+html {
+  box-sizing: border-box; /* widthとheightにpaddingとborderのサイズが含まれる */
+  width: 100vw;  /* 幅 */
+  height: 100vh; /* 高さ */
+  margin: 0;     /* 外部余白0 */
+  padding: 0;    /* 余白0 */
+  font-size: clamp(2.5px, calc(100vw / 80), 24px); /* 文字サイス：最小2.5px～100%幅で80文字～最大24px  */
+}
+
+/* 全体のスタイル */
+body {
+  width: calc(100vw -0rem) ; /* 幅 */
+  height: auto; /* 高さ */
+  background-color: #f5faff; /* 背景色：灰色がかった水色 */
+  margin-top: 0rem;     /* 枠外の上余白 */
+  margin-left: 0rem;    /* 枠外の左余白 */
+  margin-right: 0rem;   /* 枠外の右余白 */
+  margin-bottom: 0rem;  /* 枠外の下余白 */
+  padding-top: 0rem;    /* 上余白 */
+  padding-left: 0rem;   /* 左余白 */
+  padding-right: 0rem;  /* スクロールバーの内側の右余白 */
+  padding-bottom: 0rem; /* 下余白 */
+  text-wrap: pretty;         /* 自然で読みやすく改行し、かつ最終行に１単語だけ残さない */
+  line-break: strict;        /* 厳格に禁則処理して改行 */
+  overflow-wrap: break-word; /* 幅内で単語の途中で改行 */
+  overflow-x: hidden; /* 横スクロールバー */
+  overflow-y: auto; /* 縦スクロールバー */
+}
+
+/* H1タグの文字サイズ等 */
+.h1 {
+  display: inline;
+  font-size: 1.5rem;
+  font-weight: bold; /*  太字  */
+  vertical-align: middle; /* セル内のコンテンツを垂直方向に中央揃え */
+  margin-bottom: 0px;
+  color: #008080;
+  font-family: 'メイリオ';
+  line-height: 1.5;
+}
+
+/* H2タグの文字サイズ等 */
+.h2 {
+  display: inline;
+  font-size: 1.2rem;
+  font-weight: bold; /*  太字  */
+  vertical-align: middle; /* セル内のコンテンツを垂直方向に中央揃え */
+  margin-bottom: 0px;
+  color: #004040;
+  font-family: 'メイリオ';
+  line-height: 1.5;
+}
+
+/* H3タグの文字サイズ等 */
+.h3 {
+  display: inline;
+  font-size: 1rem;
+  font-weight: bold;      /*  太字  */
+  vertical-align: middle; /* セル内のコンテンツを垂直方向に中央揃え */
+  margin-bottom: 0px;
+  color: initial;         /* 文字色を初期値に戻す */
+  font-family: 'メイリオ';
+  line-height: 1.5;
+}
+
+/*  リスト記号「・」非表示  */
+ul {
+  list-style: none; /* リスト印：なし */
+}
+
+/*  リスト記号「・」非表示  */
+li {
+  vertical-align: middle; /* セル内のコンテンツを垂直方向に中央揃え */
+}
+
+/* チェックボックスのスタイル */
+.checkbox {
+  /* ブラウザのデフォルトスタイルをリセット */
+  -webkit-appearance: none; /* Safari/Chrome */
+  -moz-appearance: none;    /* Firefox */
+  appearance: none;         /* 標準 */
+  /* チェックボックスのスタイル */
+  display: inline-block;                  /* インライン要素＋幅と高さ指定 */
+  width: 1.25rem;                         /* ボックスの幅 */
+  height: 1.25rem;                        /* ボックスの高さ */
+  border: 0.1rem solid black;           /* 枠線：黒*/
+  border-radius: 1px;                     /* 角を丸くする */
+  vertical-align: middle;                 /* テキストと高さを合わせる */
+  margin-right: 1rem;                     /* テキストとの間隔 */
+  position: relative;                     /* チェックマークの配置基準 */
+  background-color: rgb(255, 255, 150); /* 背景色：黄色 */
+  cursor: pointer;                        /* マウスカーソルを手形にする */
+}
+
+/* 2. チェックされた時のボックス */
+.checkbox:checked {
+  border-color: black;      /* 枠線：紺; */
+  background-color: white;  /* 背景色：白色 */
+}
+
+/* 3. チェックマークのデザイン (::after疑似要素を使う) */
+.checkbox::after {
+  content: '';                /* 擬似要素には content が必須 */
+  display: block;
+  opacity: 0;                 /* 最初は非表示 */
+  width: 1rem;                /* チェックマークの幅 */
+  height: 1.5rem;             /* チェックマークの高さ */
+  border: solid black;      /* チェックマーク黒色 */
+  border-width: 0 0.2rem 0.2rem 0;  /* 右と下の線だけ表示 */
+  transform: rotate(60deg);   /* 斜めに回転 */
+  position: absolute;
+  left: 0.1rem;               /* ボックス内での位置調整 */
+  top: -0.9rem;               /* ボックス内での位置調整 */ /* 色の変化を滑らかにするためのトランジションを追加 */
+  transition: opacity 0.1s ease-in-out, border-color 2.0ms ease-out
+}
+/* チェック後の「レ」印を表示 */
+.checkbox:checked::after {
+  opacity: 1; /* 表示 */
+  transform: rotate(45deg) scale(1); /* 必要に応じてアニメーション用に調整 */
+}
+/* マウスカーソルを置いたときのチェックボックスの背景色 */
+.checkbox:not(:checked):hover {
+  background-color: #00ffff; /* 背景色：水色 */
+}
+/* チェック直後の「レ」印は赤色 */
+.checkbox.highlight-red::after {
+  border-color: red;  /* チェックマーク赤色 */
+}
+/* 赤色から黒色に戻すためのキーフレームアニメーション */
+@keyframes fadeToBlack {
+  from { border-color: red; } /* 最初は赤 */
+  to { border-color: black; } /* 最終的に黒 */
+}
+
+/* FC2カウンターのリンク印を非アクティブにする */
+#fc2-counter {
+  pointer-events: none; /* マウスイベントを透過させる */
+}
+
