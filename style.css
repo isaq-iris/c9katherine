@@ -1,0 +1,1048 @@
+* {
+  box-sizing: border-box;
+  /* widthとheightにpaddingとborderのサイズが含まれる */
+  padding: 0;
+}
+/* 親スタイル */
+html {
+  box-sizing: border-box;
+  /* widthとheightにpaddingとborderのサイズが含まれる */
+  width: 100vw;
+  /* 幅 */
+  height: 100vh;
+  /* 高さ */
+  margin: 0;
+  /* 外部余白0 */
+  padding: 0;
+  /* 余白0 */
+  font-family: 'メイリオ';
+  /* 標準フォント */
+  font-size: clamp(6px, calc(100vw / 80), 16px);
+  /* 文字サイス：最小2.5px～100%幅で80文字～最大24px  */
+  overflow-wrap: break-word;
+  /* 幅内で単語の途中で改行 */
+  overflow: hidden;
+  /* 親（画面全体）のスクロールを禁止 */
+  position: fixed;
+  /* 画面全体を固定 */
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  /* 親から継承（＝border-box） */
+}
+/* 全体のスタイル */
+body {
+  display: grid;
+  /* 1行目：ヘッダー： 高さ auto */
+  /* 2行目：メニュー： 高さ auto */
+  /* 3行目：メインコンテンツ（サブメニューと本文） 1fr 残り全部 の高さ*/
+  /* 4行目：フッター： 高さ auto */
+  grid-template-rows: auto auto 1fr auto;
+  /* 1列目：サブメニュー（’side’）左 auto 200pxぐらいの幅*/
+  /*
+ 2列目：本文（’content’）     右 1fr  残り全部の幅*/
+  grid-template-columns: auto 1fr;
+  /* レイアウト */
+  grid-template-areas:
+    "header  header"
+    /* ヘッダーのみ */
+    "menu    menu"
+    /* サブメニューとメニュー枠 */
+    "side    content"
+    /* サブメニューと本文 */
+    "footer  footer";
+  /* フッターのみ */
+  background-image: url(picture/brick.gif);
+  /* 背景画像：レンガ */
+  width: 100vw;
+  /* 幅 */
+  height: 100vh;
+  /* 高さ */
+  margin: 0;
+  /* 外部余白 */
+  padding: 0;
+  /* 余白 */
+}
+/* ヘッダーのスタイル */
+.site-header {
+  grid-area: header;
+  display: flex;
+  position: sticky;
+  /* スクロールしても残るように念のため指定 */
+  width: calc(100vw - 0rem);
+  /* 幅 */
+  height: 2rem;
+  /* 高さ◆  */
+  margin-top: 0rem;
+  /* 枠外の上余白 */
+  margin-left: 0rem;
+  /* 枠外の左余白 */
+  margin-right: 0rem;
+  /* 枠外の右余白 */
+  margin-bottom: 0rem;
+  /* 枠外の下余白 */
+  padding-top: 0rem;
+  /* 上余白◆ */
+  padding-left: 1rem;
+  /* 左余白◆ */
+  padding-right: 1rem;
+  /* 右余白◆ */
+  padding-bottom: 0rem;
+  /* 下余白 */
+  background-color: rgba(255, 255, 255, 70%);
+  /* 白で透明度50%の背景色 */
+  justify-content: space-between;
+  /* 左右の間にスペース */
+  z-index: 7000;
+  /* 他の要素より手前に */
+}
+/* メニュー枠のスタイル */
+.gnav {
+  grid-area: menu;
+  display: block;
+  position: sticky;
+  top: 2rem;
+  /* ◆ヘッダーの高さ分下げる */
+  margin-top: 0rem;
+  /* 枠外の上余白 */
+  margin-right: 0rem;
+  /* 枠外の右余白 */
+  margin-bottom: 0rem;
+  /* 枠外の下余白 */
+  margin-left: 21.5rem;
+  /* 枠外の左余白 */
+  padding-top: 0rem;
+  /* 上余白 */
+  padding-right: 1.5rem;
+  /* 右余白◆ */
+  padding-bottom: 0rem;
+  /* 下余白 */
+  padding-left: 0rem;
+  /* 左余白◆ */
+  width: calc(100vw - 21rem);
+  height: 2.4rem;
+  background-color: rgba(255, 255, 255, 50%);
+  /* 白で透明度90%の背景色 */
+  z-index: 9000;
+  /* 他の要素より手前に */
+}
+/* サブメニューのスタイル */
+.side {
+  display: block;
+  position: fixed;
+  /* 位置固定 */
+  flex-direction: column;
+  /* 子要素（サブメニューと画像）を縦方向に並べる */
+  top: 4.4rem;
+  /* ヘッダー(2rem) + メニュー(2.4rem) の合計◆ */
+  margin-top: -3.3rem;
+  /* 枠外の上余白 */
+  margin-right: 0rem;
+  /* 枠外の右余白 */
+  margin-bottom: 0rem;
+  /* 枠外の下余白 */
+  margin-left: 0rem;
+  /* 枠外の左余白 */
+  padding-top: 0rem;
+  /* 上余白 */
+  padding-right: 1rem;
+  /* 右余白◆ */
+  padding-bottom: 0rem;
+  /* 下余白 */
+  padding-left: 1rem;
+  /* 左余白◆ */
+  width: 21.5rem;
+  /* 幅 21.5文字分 ◆*/
+  height: auto;
+  /* 高さ */
+  overflow-wrap: break-word;
+  /* 幅内で単語の途中で改行 */
+  z-index: 8000;
+  /* 他の要素より手前に */
+}
+/* 本文のスタイル */
+.content {
+  display: block;
+  top: 4.4rem;
+  /* 画面高さから上部の固定要素分をマイナス◆ */
+  width: calc(100vw - 22.5rem);
+  /* 幅 100%からsideの幅をマイナス◆ */
+  height: calc(100vh - 4.4rem - 1.2rem);
+  /* 画面高から上下の固定要素をマイナス◆ */
+  margin-top: 0rem;
+  /* 枠外の上余白◆ */
+  margin-left: 21.5rem;
+  /* 枠外の左余白 */
+  margin-right: 0rem;
+  /* 枠外の右余白 */
+  margin-bottom: 0rem;
+  /* 枠外の下余白 */
+  padding-top: 0rem;
+  /* 上余白 */
+  padding-left: 1rem;
+  /* 左余白◆ */
+  padding-right: 1rem;
+  /* 右余白◆ */
+  padding-bottom: 0rem;
+  /* 下余白 */
+  overflow-y: auto;
+  /* 縦スクロールバー表示 */
+  overflow-x: hidden;
+  /* 横スクロール非表示◆ */
+  background-color: rgba(247, 252, 255, 90%);
+  /* 背景色 */
+  z-index: 3000;
+  /* 他の要素より手前に */
+  scroll-behavior: auto;
+  /* 最初は瞬間移動（auto） */
+  /* アニメーション終了後の「smooth」状態を永続化 */
+  animation: enable-smooth-scroll 0.1s forwards;
+  /* 外部からのジャンプ時（0.5秒間）は auto を維持 */
+  animation-delay: 1s;
+  /* ◆必ずforwardsの下に記載要◆ */
+}
+/* スムーススクロールを有効にするためのアニメーションを定義 */
+@keyframes enable-smooth-scroll {
+  from {
+    scroll-behavior: auto;
+  }
+  to {
+    scroll-behavior: smooth;
+  }}
+/* iOS/iPhone対策：慣性スクロールの設定がある場合も同様に */
+@media screen and (max-width: 768px) {
+  .content {
+    -webkit-overflow-scrolling: touch;
+  }}
+/* フッターのスタイル */
+.site-footer {
+  grid-area: footer;
+  display: block;
+  position: fixed;
+  bottom: 0rem;
+  /* 下から0.0文字分◆ */
+  width: calc(100vw - 0rem);
+  /* 幅 */
+  height: 1.2rem;
+  /* 高さ */
+  margin-top: 0rem;
+  /* 枠外の上余白 */
+  margin-left: 0rem;
+  /* 枠外の左余白 */
+  margin-right: 0rem;
+  /* 枠外の右余白 */
+  margin-bottom: 0rem;
+  /* 枠外の下余白 */
+  padding-top: 0rem;
+  /* 上余白 */
+  padding-left: 1rem;
+  /* 左余白 */
+  padding-right: 1rem;
+  /* 右余白 */
+  padding-bottom: 0rem;
+  /* 下余白 */
+  background-color: rgba(255, 255, 255, 0.9);
+  /* 白で透明度50%の背景色 */
+  text-align: center;
+  z-index: 9000;
+  /* 他の要素より手余白 */
+}
+/* H1タグの文字サイズ等 */
+.h1 {
+  display: inline;
+  color: #008080;
+  font-weight: bold;
+  /*  太字  */
+  font-size: 1.5rem;
+  /* 文字サイズ */
+  line-height: 2;
+  /* 行の高さ 200% */
+  vertical-align: middle;
+  /* セル内のコンテンツを垂直方向に中央揃え */
+}
+/* 水平区切り */
+.hr {
+  height: 1px;
+  /* 高さ 1px */
+}
+/* H2タグの文字サイズ等 */
+.h2 {
+  display: inline;
+  color: #004040;
+  font-weight: bold;
+  /*  太字  */
+  font-size: 1.2rem;
+  /* 文字サイズ */
+  line-height: 1.5;
+  /* 行の高さ 150% */
+  vertical-align: middle;
+  /* セル内のコンテンツを垂直方向に中央揃え */
+}
+/* H3タグの文字サイズ等 */
+.h3 {
+  display: inline;
+  color: initial;
+  /* 文字色を初期値に戻す */
+  font-weight: bold;
+  /*  太字  */
+  font-size: 1rem;
+  /* 文字サイズ */
+  line-height: 1;
+  /* 行の高さ 100% */
+  vertical-align: middle;
+  /* セル内のコンテンツを垂直方向に中央揃え */
+}
+/* タイトルの補足テキストのスタイル */
+.h7 {
+  display: inline;
+  color: initial;
+  /* 文字色を初期値に戻す */
+  font-size: 1rem;
+  /* 文字サイズ */
+  line-height: 1;
+  /* 行の高さ 100% */
+  vertical-align: middle;
+  /* セル内のコンテンツを垂直方向に中央揃え */
+  white-space: nowrap;
+  /* 折り返さない */
+}
+/* 脚注テキストのスタイル */
+.h8 {
+  display: inline;
+  color: initial;
+  /* 文字色を初期値に戻す */
+  font-size: 0.9rem;
+  /* 文字サイズ ◆若干小さめ*/
+  line-height: 1;
+  /* 行の高さ 100% */
+  vertical-align: middle;
+  /* セル内のコンテンツを垂直方向に中央揃え */
+  white-space: nowrap;
+  /* 折り返さない */
+  overflow: hidden;
+  /* はみ出したテキストを隠す */
+  text-overflow: ellipsis;
+  /* はみ出したテキストを三点リーダーで省略 */
+}
+/* 右上のカウンターのスタイル */
+.h9 {
+  display: inline;
+  color: initial;
+  /* 文字色を初期値に戻す */
+  font-size: 1rem;
+  /* 文字サイズ */
+  line-height: 1.5;
+  /* 行の高さ 1文字の1.5倍 */
+  vertical-align: middle;
+  /* セル内のコンテンツを垂直方向に中央揃え */
+  white-space: nowrap;
+  /* 折り返さない */
+}
+/*  リスト記号「・」非表示  */
+ul {
+  list-style: none;
+  /* リスト印：なし */
+}
+/*  リスト記号「・」非表示  */
+li {
+  list-style: none;
+  /* リスト印：なし */
+}
+/* メニューのアイコン画像とテキストを１行にする */
+.no-break-link {
+  display: flex;
+  /* アイコン画像とテキストをflexアイテムとして横並びにする */
+  white-space: nowrap;
+  /* テキストを改行をしないようにする */
+  align-items: center;
+  /* 縦方向の中央に揃える */
+}
+/* 画像のスタイル */
+.img {
+  cursor: pointer;
+  /* カーソルを指の形にする (任意) */
+}
+.img img {
+  width: 100%;
+  /* 固定の幅 */
+  object-fit: contain;
+  /* 画像を要素内に収まるように調整しアスペクト比を維持 */
+}
+/* 外部リンクにアイコン付ける */
+a[href^="http://"]:not([href*="web.fc2.com"]):not([href*="counter.fc2.com"]):not(:has(.icon))::after,
+a[href^="https://"]:not([href*="web.fc2.com"]):not([href*="counter.fc2.com"]):not(:has(.icon))::after {
+  content: "";
+  /* 疑似要素として空のコンテンツを作成 */
+  display: inline-block;
+  /* インラインブロック要素として表示 */
+  width: 1rem;
+  /* アイコンの幅 */
+  height: 1rem;
+  /* アイコンの高さ */
+  margin-left: 4px;
+  /* テキストとの左側の余白 */
+  background-image: url("picture/window-ic.png");
+  /* アイコン画像 */
+  background-repeat: no-repeat;
+  /* 繰り返しなし */
+  background-position: bottom 0px right 0px;
+  /* 表示位置 */
+  background-color: rgb(255, 255, 255, 0.8);
+  /* 背景色：白（半透明80%） */
+  background-size: contain;
+  /* 背景画像を要素内に収まるように調整 */
+}
+/* menu0 全体のスタイル */
+.menu0 {
+  display: flex;
+  width: calc(100% - 0rem);
+  /* 幅 */
+  margin: 0 auto;
+  /* 中央揃え */
+}
+
+/*全てのリスト・リンク共通*/
+.menu0 li {
+  position: relative;
+  /* 親要素を基準に配置 */
+  list-style: none;
+  /* リスト印：なし */
+  width: auto;
+  /* 幅：文字長に合わせて可変 */
+  height: 2.2rem;
+  /* 高さ */
+}
+/* 親階層「li」のみ幅を設定するため子セレクタ「＞」で指定 */
+.menu0>li {
+  top: 0;
+  flex-grow: 1;
+  /* 親のflexコンテナの残りのスペースを均等に埋める */
+  width: 33%;
+  /* 親階層のみ幅を4等分（25%）◆ */
+
+}
+/* リンク「a」にマウスポインターを置いたときの文字色 */
+/*　※ 但し、リンク先がブランクでない場合のみ）*/
+.menu0>li a[href]:not([href=""]):hover {
+  color: #ffff00;
+  /* 文字色：黄色 */
+  font-weight: bold;
+}
+/* 親階層のリンク「a」のスタイル */
+.menu0 li a {
+  display: block;
+  background: #00172d;
+  border-right: 1px solid #eee;
+  color: #fff;
+  text-align: center;
+  /* 文字：中央 */
+  text-decoration: none;
+  /* 文字装飾：なし */
+  white-space: nowrap;
+  /* 折り返さない */
+  padding: 1px 0.5rem 1px 0.5rem;
+  /* 上右下左の余白 */
+  line-height: 2.2rem;
+  /* 1行の高さ */
+  font-size: 1.5rem;
+  /* ◆文字サイズ◆ */
+}
+/* リンク「a」にホバー時◆共通 */
+/* ホバー時；マウスポインターを置いたとき */
+.menu0 li:hover a[href]:not([href=""]) {
+  background: #053664;
+  /* 背景色１ */
+}
+/* リンク先がない「a」◆共通 */
+.menu0 a[href=""] {
+  background: #838383;
+  /* 背景色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/* メニュー子階層以降共通 */
+/* セレクタなし「li li」子階層以降全てが対象 */
+.menu0 li li {
+  height: 0;
+  /* 子階層：初期時は非表示 */
+  overflow: hidden;
+  /* 子階層：初期時は非表示 */
+}
+/* 子階層のリンク「a」 */
+.menu0 li li a {
+  border-top: 1px solid #eeeeee;
+  /* 上に白色の罫線 */
+  text-align: left;
+  /* 文字：左寄せ */
+  padding-top: 1px;
+  /* 上余白 */
+  padding-right: 1rem;
+  /* 右余白 ◆「▸」1文字 */
+  padding-top: 1px;
+  /* 下余白 */
+  padding-left: 1rem;
+  /* 右余白 ◆「▸」1文字 */
+  background: #053664;
+  /* 背景色１ */
+  white-space: nowrap;
+  /* 折り返さない */
+}
+/* ホバー時に直下の「li」のみ表示 */
+/* セレクター「>」を入れて直下のみ対象 */
+.menu0 li:hover>ul>li {
+  height: 2.2rem;
+  overflow: visible;
+  /* マウスホバー時に表示 */
+}
+/* 子階層のリンク「a」にホバー時に背景色を変化 */
+.menu0 li li:hover a[href]:not([href=""]) {
+  background: #005cb1;
+  /* 背景色２ */
+}
+/* 子階層の前＝親階層に「▾」を付ける */
+.menu0>li>ul:before {
+  position: absolute;
+  /* 絶対配置 */
+  top: 1.1rem;
+  /* 上から1文字の位置 */
+  right: 0.2rem;
+  /* 右から0.2文字の位置 */
+  content: "";
+  /* 擬似要素 以下の設定で「▾」になる*/
+  border: 0.3rem solid transparent;
+  /* 太さ0.3文字分 透明 */
+  border-top: 0.5rem solid yellow;
+  /* 太さ0.5文字分 黄色*/
+  pointer-events: none;
+  /* この要素のマウスイベントを無視する */
+}
+/* 孫階層の前＝子階層の上に「▶︎」を付ける */
+.menu0 li ul li ul:before {
+  position: absolute;
+  /* 絶対配置 */
+  top: 1rem;
+  /* 上から1文字  ◆*/
+  left: -0.7rem;
+  /* ◆ 左マイナス＝子階層の右 ◆*/
+  content: "";
+  /* 擬似要素 以下の設定で「▸」になる*/
+  border: 0.3rem solid transparent;
+  /* 太さ0.3文字分 透明 */
+  border-left: 0.5rem solid yellow;
+  /* 太さ0.5文字分 黄色*/
+  transform: translateY(-50%);
+  pointer-events: none;
+  /* この要素のマウスイベントを無視する */
+}
+/* 一番右「nth-child(●番目)」は左に「◂」表示 */
+.menu0 li:nth-last-child(1) ul li ul:before {
+  position: absolute;
+  /* 絶対配置 */
+  top: 1rem;
+  /* 上から1文字  ◆*/
+  right: -0.7rem;
+  /*◆ 右マイナス＝子階層の左 ◆*/
+  content: "";
+  /* 擬似要素 以下の設定で「▸」になる*/
+  border: 0.3rem solid transparent;
+  /* 太さ0.3文字分 透明 */
+  border-right: 0.5rem solid yellow;
+  /* 太さ0.5文字分 黄色*/
+  transform: translateY(-50%);
+  pointer-events: none;
+  /* この要素のマウスイベントを無視する */
+}
+/* 孫階層以降すべての「ul」が対象 */
+.menu0 li ul li ul {
+  position: absolute;
+  /* 絶対配置 */
+  top: 0;
+  /* 上からゼロ */
+  left: 100%;
+  /* 子iiの100%の位置 */
+  width: 100%;
+  /* 幅：親と同じ幅 */
+}
+/* 一番右「nth-child(●番目)」は左に表示 */
+.menu0 li:nth-last-child(1) ul li ul {
+  left: -100%;
+  /* 左マイナス100%の位置 */
+}
+/*  孫階層以降の全てのリストアイテム「li」の共通設定  */
+/* 初期状態では非表示 */
+.menu0 li ul li ul li {
+  height: 0;
+  /* 高さ0 */
+  overflow: hidden;
+  /* 初期時は非表示 */
+}
+/* 孫階層のリンク「a」 */
+.menu0 li ul li ul li a[href]:not([href=""]) {
+  background: #005cb1;
+  /* 背景色２ */
+}
+/* 孫階層のリンク「a」にホバー時 */
+.menu0 li ul li ul li:hover a[href]:not([href=""]) {
+  background: #121295;
+  /* 背景色３ */
+}
+/* ひ孫階層以降すべてののリンク「a」 */
+.menu0 li ul li ul li ul li a[href]:not([href=""]) {
+  background: #121295;
+  /* 背景色３ */
+}
+/* ひ孫階層のリンク「a」にホバー時 */
+.menu0 li ul li ul li ul li:hover a[href]:not([href=""]) {
+  background: #0000ff;
+  /* 背景色 */
+}
+
+
+/*◆ サブメニューのスタイル ◆*/
+/*全てのリスト・リンク共通*/
+.side li {
+  position: relative;
+  /* 親要素を基準に配置 */
+  list-style: none;
+  /* リスト印：なし */
+  width: auto;
+  /* 幅：文字長に合わせて可変 */
+  height: 2.2rem;
+  /* 高さ */
+}
+/* 親階層「li」のみ幅を設定するため子セレクタ「＞」で指定 */
+.side>li {
+  top: 0;
+  flex-grow: 1;
+  /* 親のflexコンテナの残りのスペースを均等に埋める */
+}
+/* リンク「a」にマウスポインターを置いたときの文字色 */
+/*　※ 但し、リンク先がブランクでない場合のみ）*/
+.side li a[href]:not([href=""]):hover {
+  color: #ffff00;
+  /* 文字色：黄色 */
+  font-weight: bold;
+}
+/* 親階層のリンク「a」のスタイル */
+.side li a {
+  display: block;
+  background: #00172d;
+  border-right: 1px solid #eee;
+  color: #fff;
+  text-align: left;
+  /* 左寄せ */
+  text-decoration: none;
+  /* 文字装飾：なし */
+  white-space: nowrap;
+  /* 折り返さない */
+  padding: 1px 0.5rem 1px 0.5rem;
+  /* 上右下左の余白 */
+  line-height: 2.2rem;
+  /* 1行の高さ */
+  font-size: 1.5rem;
+  /* ◆文字サイズ◆ */
+}
+/* リンク「a」にホバー時◆共通 */
+/* ホバー時；マウスポインターを置いたとき */
+.side li:hover a[href]:not([href=""]) {
+  background: #053664;
+  /* 背景色１ */
+}
+/* リンク先がない「a」◆共通 */
+.side a[href=""] {
+  background: #838383;
+  /* 背景色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/* サブメニューは孫階層以降から非表示 共通 */
+.side li li li {
+  height: 0;
+  /* 孫階層：初期時は非表示 */
+  overflow: hidden;
+  /* 孫階層：初期時は非表示 */
+}
+/* 子階層のリンク「a」 */
+.side li li a {
+  border-top: 1px solid #eeeeee;
+  /* 上に白色の罫線 */
+  text-align: left;
+  /* 文字：左寄せ */
+  padding-top: 1px;
+  /* 上余白 */
+  padding-right: 1rem;
+  /* 右余白 ◆「▸」1文字 */
+  padding-top: 1px;
+  /* 下余白 */
+  padding-left: 1rem;
+  /* 右余白 ◆「▸」1文字 */
+  background: #053664;
+  /* 背景色１ */
+  white-space: nowrap;
+  /* 折り返さない */
+}
+/* ホバー時に直下の「li」のみ表示 */
+/* セレクター「>」を入れて直下のみ対象 */
+.side li:hover>ul>li {
+  height: 2.2rem;
+  overflow: visible;
+  /* マウスホバー時に表示 */
+}
+/* 子階層のリンク「a」にホバー時に背景色を変化 */
+.side li li:hover a[href]:not([href=""]) {
+  background: #005cb1;
+  /* 背景色２ */
+}
+/* 孫階層以降すべての「ul」が対象 */
+.side li ul li ul {
+  position: absolute;
+  /* 絶対配置 */
+  top: 0;
+  /* 上からゼロ */
+  left: 100%;
+  /* 子iiの100%の位置 */
+  width: 100%;
+  /* 幅：親と同じ幅 */
+  z-index: 9100;
+  /* 子階層9000より手前に */
+}
+/* 孫階層のリンク「a」 */
+.side li ul li ul li a[href]:not([href=""]) {
+  background: #005cb1;
+  /* 背景色２ */
+}
+/* 孫階層のリンク「a」にホバー時 */
+.side li ul li ul li:hover a[href]:not([href=""]) {
+  background: #121295;
+  /* 背景色３ */
+}
+/* ひ孫階層以降すべてののリンク「a」 */
+.side li ul li ul li ul li a[href]:not([href=""]) {
+  background: #121295;
+  /* 背景色３ */
+}
+/* ひ孫階層のリンク「a」にホバー時 */
+.side li ul li ul li ul li:hover a[href]:not([href=""]) {
+  background: #0000ff;
+  /* 背景色 */
+}
+/* 孫階層の前＝子階層の上に「▶︎」を付ける */
+.side li ul li ul:before {
+  position: absolute;
+  /* 絶対配置 */
+  top: 1.1rem;
+  /* 上から1.1文字  ◆*/
+  left: -0.7rem;
+  /* ◆ 左マイナス＝子階層の右 ◆*/
+  content: "";
+  /* 擬似要素 以下の設定で「▸」になる*/
+  border: 0.3rem solid transparent;
+  /* 太さ0.3文字分 透明 */
+  border-left: 0.5rem solid yellow;
+  /* 太さ0.5文字分 黄色*/
+  transform: translateY(-50%);
+}
+/*  文字：赤 */
+.red-B {
+  color: red;
+  /* 赤色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/*  文字：青 */
+.blue-B {
+  color: blue;
+  /* 青色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/*  「72ビジョン」文字：赤 */
+#text-72 {
+  text-decoration: none;
+  color: red;
+  /* 赤色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/*  「72ビジョン」（履歴あり）文字：赤 */
+#text-72 :visited {
+  text-decoration: none;
+  color: #c80000;
+  /* 赤色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/*  「あい」文字：青 */
+#text-I {
+  text-decoration: none;
+  color: #0080ff;
+  /* 青色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/*  「あい」（履歴あり）文字：青 */
+#text-I :visited {
+  text-decoration: none;
+  color: #004283;
+  /* 青色 */
+  font-weight: bold;
+  /* 太字 */
+}
+/*  左寄せ */
+.left-text {
+  text-align: left;
+  /* 左寄せ */
+}
+/*  右寄せ */
+.right-text {
+  text-align: right;
+  /* 右寄せ */
+}
+/*  基本的なリンクのスタイル */
+a:link {
+  text-decoration: none;
+  color: #0000CC;
+}
+/*  既読リンクのスタイル */
+a:visited {
+  text-decoration: none;
+  color: #aa0032;
+}
+/*  クリックしたときのリンクのスタイル */
+a:active {
+  text-decoration: none;
+  color: #CC0000;
+}
+/*  マウスのポインタを置いたときのリンクのスタイル */
+a:hover {
+  text-decoration: none;
+  color: #0099FF;
+}
+/*  インラインフレームの枠*/
+.iframe-wrap {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: none;
+  /* 背景画像「レンガ」なし */
+  background-color: #ffffff;
+  /* 背景色：白色 */
+  margin-top: 0rem;
+  /* 枠外の上余白 */
+  margin-left: 0rem;
+  /* 枠外の左余白 */
+  margin-right: 0rem;
+  /* 枠外の右余白 */
+  margin-bottom: 0rem;
+  /* 枠外の下余白 */
+  padding-top: 0rem;
+  /* 上余白 */
+  padding-left: 0rem;
+  /* 左余白 */
+  padding-right: 0rem;
+  /* スクロールバーの内側の右余白 */
+  padding-bottom: 0rem;
+  /* 下余白 */
+  text-wrap: pretty;
+  /* 自然で読みやすく改行し、かつ最終行に１単語だけ残さない */
+  line-break: strict;
+  /* 厳格に禁則処理して改行 */
+  overflow: hidden;
+  opacity: 0;
+  /* 初期状態は非表示（透明） */
+  transition: opacity 0.3s ease;
+  /* 0.3秒でふわっと表示 */
+  font-size: clamp(6px, calc(100vw / 40), 24px);
+  /* 文字サイス：最小2.5px～100%幅で80文字～最大24px  */
+}
+/* 幅調整完了後にJSでこのクラスを付与する */
+.iframe-wrap.is-loaded {
+  opacity: 1;
+}
+/* iframe共通のスタイル */
+iframe {
+  width: 100%;
+  height: 100vh;
+  margin-top: 0rem;
+  /* 枠外の上余白 */
+  margin-left: 0rem;
+  /* 枠外の左余白 */
+  margin-right: 0rem;
+  /* 枠外の右余白 */
+  margin-bottom: 0rem;
+  /* 枠外の下余白 */
+  padding-top: 0rem;
+  /* 上余白 */
+  padding-left: 0rem;
+  /* 左余白 */
+  padding-right: 0rem;
+  /* スクロールバーの内側の右余白 */
+  padding-bottom: 0rem;
+  /* 下余白 */
+  border: none;
+  /* iframeの枠線を非表示 */
+  overflow-x: hidden;
+  /* 横スロールバー非表示 */
+  overflow-y: hidden;
+  /* 縦スロールバー非表示 */
+  transform-origin: 0 0;
+  background-color: #ffffff;
+  /*◆ 検証用の背景色 ◆*/
+}
+/* link1.htmlのiframe内での拡大率100/80 */
+.scale-link1 {
+  position: absolute;
+  /* 親要素の配置に影響されない */
+  width: 77%;
+  /* 幅 */
+  height: 77%;
+  /* 高さ */
+  overflow-y: scroll;
+}
+.scale-link2 {
+  position: absolute;
+  /* 親要素の配置に影響されないように */
+  width: 155%;
+  /* 幅 */
+  height: 155%;
+  /* 高さ */
+  overflow-y: scroll;
+}
+.scale-link3 {
+  position: absolute;
+  /* 親要素の配置に影響されないように */
+  width: 75%;
+  /* 幅 */
+  height: 75%;
+  /* 幅 */
+  overflow-y: scroll;
+}
+.scale-link4 {
+  position: absolute;
+  /* 親要素の配置に影響されないように */
+  width: 100%;
+  /* 幅 */
+  height: 100%;
+  /* 幅 */
+  overflow-y: scroll;
+}
+.scale-link9 {
+  position: absolute;
+  /* 親要素の配置に影響されないように */
+  width: 75%;
+  /* 幅 */
+  height: 75%;
+  /* 幅 */
+  overflow-y: scroll;
+}
+/* スクロールバーの基本設定 */
+::-webkit-scrollbar {
+  width: 10px;
+  /* 縦スクロールバーの幅 */
+  height: 10px;
+  /* 横スクロールバーの幅 */
+}
+/* スクロール上下左右ボタンの大きさ */
+::-webkit-scrollbar-button:single-button {
+  background-color: #e6f6ff;
+  display: block;
+  border-style: solid;
+  height: 12px;
+  /* 高さ*/
+  width: 12px;
+  /* 幅*/
+}
+/* 縦スクロールバーの矢印▼▲ */
+/* ▴上へ */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-top: 0px solid;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #c0ccd3;
+}
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-bottom-color: #00afaf;
+}
+/* ▾下へ*/
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-top: 10px solid #c0ccd3;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 0px solid transparent;
+}
+::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+  border-top-color: #00afaf;
+}
+/*横のスクロールバー*/
+/* ◀左へ */
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  border-top: 5px solid transparent;
+  border-left: 10px solid transparent;
+  border-right: 10px solid #c0ccd3;
+  border-bottom: 5px solid transparent;
+}
+::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
+  border-right-color: #00afaf;
+}
+/* ▸右へ */
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+  border-top: 5px solid transparent;
+  border-left: 10px solid #c0ccd3;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+::-webkit-scrollbar-button:single-button:horizontal:increment:hover {
+  border-left-color: #00afaf;
+}
+/* スクロールバー背景 */
+::-webkit-scrollbar-track {
+  background-color: #eaf5fc;
+  border-radius: 50px;
+  /* つまみの角を丸くする */
+}
+/* スクロールバー背景 */
+::-webkit-scrollbar-track:hover {
+  border: 1px solid;
+  border-color: #c9d7e0;
+}
+/* スクロールバーのつまみ（ドラッグする部分） */
+::-webkit-scrollbar-thumb {
+  background: #cedce4;
+  border-radius: 50px;
+  /* つまみの角を丸くする */
+  height: 50px;
+  width: 50px;
+}
+/* 横移動タブのホバー */
+::-webkit-scrollbar-thumb:hover {
+  background: #01caca;
+  border: 1px solid;
+  border-color: #009999;
+}
+
+/* FC2カウンターのリンク印を非アクティブにする */
+#fc2-counter {
+  height: 1.5rem;
+  /* 高さを固定 */
+  line-height: 1.5rem;
+  /* 行高を一致させる */
+  overflow: hidden;
+  /* はみ出しを隠す（または visible で確認） */
+  display: flex;
+  /* 中央寄せにしたいなら有効 */
+  align-items: center;
+  pointer-events: none;
+  /* マウスイベントを透過させる */
+  zoom: 0.9;
+  -webkit-transform: scale(0.9);
+  transform: scale(0.9);
+}
+#fc2_footer,
+#fc2_footer span,
+#fc2_footer a {
+  font-size: 8px !important;
+  line-height: 1 !important;
+}
